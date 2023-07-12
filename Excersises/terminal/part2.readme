@@ -1,0 +1,36 @@
+1//////////////////
+displays the manual for a command.  Displays manual for the remove command.  Scroll with mouse wheel or up/down arrows.   Exit by pressing "q".
+
+2//////////////////
+-l "List files in the long format, as described in the The
+             Long Format subsection below."
+-a "Include directory entries whose names begin with a dot (‘.’)."
+
+3/////////////////
+opt + left or right arrows
+
+4////////////////
+crtl + e
+
+5/////////////////
+I assume this is talking about getting to the begginning of the current line in terminal not the first line of thread, so it's 
+ctrl + a 
+
+6//////////////////
+opt + del
+
+7/////////////////
+A terminal is a text input and output environment.
+A shell is a program that processes commands and outputs the results.
+
+8/////////////////
+Absolute path always starts at the root and shows the complete route to the file/folder
+
+9////////////////
+Relative path gives the route to the file/folder relative to the current directory.
+
+10//////////////
+A flag modifies how a command operates, set off by spaces and usually starting with a "-".
+
+11////////////////
+-r will remove a folder and it's contents.  -f will force the removal.
