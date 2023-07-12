@@ -1,0 +1,16 @@
+1///////////////
+git checkout -b New_Branch_Name_Here
+
+2///////////////
+Fast forward merge is when git can tell when the commits happened and can organize them cronologically.
+Recursive merge was quickly skipped over in the video, but it is an algorithm that git uses to merge branches when a fast forward merge won't suffice.
+
+3///////////////
+git checkout Target_Branch_Name
+
+4///////////////
+git branch -d(or -D) Name_Of_Branch_To_Be_Deleted
+
+5/////////////////
+When changes are committed to the smae file from two different branches.
+
