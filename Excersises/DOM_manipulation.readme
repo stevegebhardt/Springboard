@@ -1,0 +1,45 @@
+1/////////////
+document.getElementById("container")
+
+2.///////////
+document.querySelector("#container")
+
+3/////////////
+document.querySelectorAll(".second")
+
+4/////////////
+document.querySelector("ol .third")
+
+5//////////////
+let foundSection = document.querySelector("#container")
+foundSection.innerText = "Hello!"
+
+6//////////////
+let div = document.querySelector(".footer")
+footer.classList.add("main")
+
+7/////////////
+let div = document.getElementsByClassName("footer main")
+div.classList.remove("main")
+
+8/////////////
+let newList = document.createElement("li")
+
+9//////////////
+newList.innerText = "four"
+
+10/////////////
+let ul = document.querySelector("ul")
+ul.appendChild(newList)
+
+11/////////////
+let olChildren = document.querySelectorAll("ol li")
+
+for(let i = 0, i < olChildren.length, i++) {
+    olChildren.style.backgroundColor = "#00ff00"
+}
+
+12/////////////
+let byeBye = document.getElementsByClassName("footer")
+byeBye.remove()
+
