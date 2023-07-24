@@ -2,7 +2,7 @@ const form = document.getElementById("toDoForm");
 const list = document.getElementById("myList");
 
 //pull info from local storage
-const savedItems = JSON.parse(localStorage.getItem("todos")) || [];
+const savedItems = JSON.parse(localStorage.getItem("toDo")) || [];
 for (let i = 0; i < savedItems.length; i++) {
   let newToDo = document.createElement("li");
   newToDo.innerText = savedItems[i].task;
@@ -23,7 +23,7 @@ form.addEventListener("click", function (e) {
   list.appendChild(newToDo);
 
   savedItems.push({ task: newToDo.innerText, isCompleted: false });
-  localStorage.setItem("toDos", JSON.stringify(savedItems));
+  localStorage.setItem("toDo", JSON.stringify(savedItems));
 });
 
 list.addEventListener("click", function (e) {
@@ -34,5 +34,12 @@ list.addEventListener("click", function (e) {
   } else {
     clickedItem.style.textDecoration = "none";
     clickedItem.isCompleted = false;
+  }
+
+  for (let i = 0; i < savedTodos.length; i++) {
+    if (savedTodos[i].task === clickedListItem.innerText) {
+      savedTodos[i].isCompleted = !savedTodos[i].isCompleted;
+      localStorage.setItem("todos", JSON.stringify(savedTodos));
+    }
   }
 });

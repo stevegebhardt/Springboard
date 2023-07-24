@@ -6,11 +6,17 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     let removeButton = document.createElement("button");
-    removeButton.innerText = "Completed";
+    removeButton.id = "remove";
+    removeButton.innerText = "Remove";
+
+    let completedButton = document.createElement("button");
+    completedButton.id = "completed";
+    completedButton.innerText = "Completed";
 
     let newToDo = document.createElement("li");
     newToDo.innerText = document.getElementById("toDo").value;
 
+    newToDo.appendChild(completedButton);
     newToDo.appendChild(removeButton);
     list.appendChild(newToDo);
 
@@ -18,10 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   list.addEventListener("click", function (e) {
-    const targetTagToLowerCase = e.target.tagName.toLowerCase();
-    if (targetTagToLowerCase === "li") {
-      e.target.style.textDecoration = "line-through";
-    } else if (targetTagToLowerCase === "button") {
+    const target = e.target.id;
+    console.log(target);
+    if (target === "completed") {
+      e.target.parentNode.style.textDecoration = "line-through";
+    } else if (target === "remove") {
       e.target.parentNode.remove();
     }
   });
