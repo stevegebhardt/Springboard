@@ -7,12 +7,18 @@
     <title>Your To-Do List</title>
   </head>
   <body>
+    <header>
+      <h1>What To Do?, What To Do!</h1>
+    </header>
     <section>
-      <form action="#" id="todoForm">
-        <label for="todo">List Item</label>
-        <input type="text" name="todo" id="todo" />
+      <form action="#" id="toDoForm">
+        <label for="toDo">List Item</label>
+        <input type="text" name="toDo" id="toDo" autofocus />
         <input type="submit" value="Add To-Do" />
       </form>
+    </section>
+    <section>
+      <ul id="myList"></ul>
     </section>
     <script src="app.js"></script>
   </body>
