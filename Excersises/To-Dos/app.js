@@ -1,26 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
   let toDoForm = document.getElementById("toDoForm");
   let list = document.getElementById("myList");
+  let removeButton = document.createElement("button");
+  removeButton.id = "remove";
+  removeButton.innerText = "Remove";
+
+  let completedButton = document.createElement("button");
+  completedButton.id = "completed";
+  completedButton.innerText = "Completed";
+
+  let newToDo = document.createElement("li");
+
+  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  for (let i = 0; i < savedTodos.length; i++) {
+    let newTodo = document.createElement("li");
+    newTodo.innerText = savedTodos[i].task;
+    newTodo.isCompleted = savedTodos[i].isCompleted ? true : false;
+    if (newTodo.isCompleted) {
+      newTodo.style.textDecoration = "line-through";
+    }
+    newTodo.appendChild(completedButton);
+    newTodo.appendChild(removeButton);
+    list.appendChild(newTodo);
+  }
 
   toDoForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    let removeButton = document.createElement("button");
-    removeButton.id = "remove";
-    removeButton.innerText = "Remove";
-
-    let completedButton = document.createElement("button");
-    completedButton.id = "completed";
-    completedButton.innerText = "Completed";
-
-    let newToDo = document.createElement("li");
     newToDo.innerText = document.getElementById("toDo").value;
+    newToDo.isCompleted = false;
 
     newToDo.appendChild(completedButton);
     newToDo.appendChild(removeButton);
     list.appendChild(newToDo);
 
     toDoForm.reset();
+
+    savedTodos.push({ task: newToDo.innerText, isCompleted: false });
+    localStorage.setItem("todos", JSON.stringify(savedTodos));
   });
 
   list.addEventListener("click", function (e) {
@@ -30,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.parentNode.style.textDecoration = "line-through";
     } else if (target === "remove") {
       e.target.parentNode.remove();
+      let temp = JSON.parse(localsotrage.getItem("todos")) || [];
+      temp.splice(index, 1);
+      localStorage.setItem("todos", JSON.stringify(temp));
     }
   });
 });
