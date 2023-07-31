@@ -1,4 +1,7 @@
 const gameContainer = document.getElementById("game");
+let firstPick = null;
+let secondPick = null;
+let matches = 0;
 
 const COLORS = [
   "red",
@@ -10,7 +13,7 @@ const COLORS = [
   "blue",
   "green",
   "orange",
-  "purple"
+  "purple",
 ];
 
 // here is a helper function to shuffle an array
@@ -59,8 +62,42 @@ function createDivsForColors(colorArray) {
 
 // TODO: Implement this function!
 function handleCardClick(event) {
-  // you can use event.target to see which element was clicked
-  console.log("you just clicked", event.target);
+  // check to see if target is already flipped
+  if (event.target.classList.contains("flipped")) return;
+
+  //set firstPick and secondPick cards
+  let currentPick = event.target;
+  currentPick.style.backgroundColor = currentPick.classList[0];
+
+  if (!firstPick || secondPick) {
+    currentPick.classList.add("flipped");
+    firstPick = firstPick || currentPick;
+    secondPick = currentPick === firstPick ? null : currentPick;
+  }
+
+  //check to see if first card class equals second card class
+  if (firstPick && secondPick) {
+    if (firstPick.className === secondPick.className) {
+      matches = +1;
+      firstPick.removeEventListener("click", handleCardClick);
+      secondPick.removeEventListener("click", handleCardClick);
+      firstPick = null;
+      secondPick = null;
+    } else {
+      //if first pick is not equal to second pick, revert to previous state
+      setTimeout(function () {
+        firstPick.style.backgroundColor = "";
+        firstPick.classList.remove("flipped");
+        firstPick = null;
+        secondPick.style.backgroundColor = "";
+        secondPick.classList.remove("flipped");
+        secondPick = null;
+      }, 1000);
+    }
+  }
+
+  //check for win condition
+  if (matches == COLORS.length / 2) alert("Game Over");
 }
 
 // when the DOM loads
